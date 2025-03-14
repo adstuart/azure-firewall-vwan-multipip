@@ -2,7 +2,7 @@
 Raw testing logs from using customer-managed PiPs at scale on AZFW in VWAN Hub
 
 # Create prefixes (16 IP per /28 prefix)
-'''
+```
 az network public-ip prefix create --length 28 --location westeurope --name prefix1 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix2 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix3 --resource-group avs-ri
@@ -10,10 +10,10 @@ az network public-ip prefix create --length 28 --location westeurope --name pref
 az network public-ip prefix create --length 28 --location westeurope --name prefix5 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix6 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix7 --resource-group avs-ri
-'''
+```
 
 # Create Public IP from prefixes (111 Public IP total)
-
+```
 $prefix = Get-AzPublicIpPrefix -ResourceGroupName avs-ri -Name prefix
 New-AzPublicIpAddress -Name "pip1" -ResourceGroupName "avs-ri" -Sku "Standard" -Location "westeurope" -AllocationMethod Static -PublicIpPrefix $prefix
 New-AzPublicIpAddress -Name "pip2" -ResourceGroupName "avs-ri" -Sku "Standard" -Location "westeurope" -AllocationMethod Static -PublicIpPrefix $prefix
@@ -138,7 +138,10 @@ New-AzPublicIpAddress -Name "pip108" -ResourceGroupName "avs-ri" -Sku "Standard"
 New-AzPublicIpAddress -Name "pip109" -ResourceGroupName "avs-ri" -Sku "Standard" -Location "westeurope" -AllocationMethod Static -PublicIpPrefix $prefix
 New-AzPublicIpAddress -Name "pip110" -ResourceGroupName "avs-ri" -Sku "Standard" -Location "westeurope" -AllocationMethod Static -PublicIpPrefix $prefix
 New-AzPublicIpAddress -Name "pip111" -ResourceGroupName "avs-ri" -Sku "Standard" -Location "westeurope" -AllocationMethod Static -PublicIpPrefix $prefix
+```
 
+# Create Azure Firewall in pre-existing VWAN Hub with 111 customer-managed PiPs
+```
 $pip1 = Get-AzPublicIpAddress -Name "pip1" -ResourceGroupName "avs-ri"
 $pip2 = Get-AzPublicIpAddress -Name "pip2" -ResourceGroupName "avs-ri"
 $pip3 = Get-AzPublicIpAddress -Name "pip3" -ResourceGroupName "avs-ri"
@@ -250,15 +253,15 @@ $pip108 = Get-AzPublicIpAddress -Name "pip108" -ResourceGroupName "avs-ri"
 $pip109 = Get-AzPublicIpAddress -Name "pip109" -ResourceGroupName "avs-ri"
 $pip110 = Get-AzPublicIpAddress -Name "pip110" -ResourceGroupName "avs-ri"
 $pip111 = Get-AzPublicIpAddress -Name "pip111" -ResourceGroupName "avs-ri"
-
-# Create Azure Firewall in pre-existing VWAN Hub with 111 customer-managed PiPs
-
+```
+```
 $fp = Get-AzFirewallPolicy -Name premium -ResourceGroupName avs-ri
 $fpId = $fp.Id
 $vHub = Get-AzVirtualHub -Name "hub-uks" -ResourceGroupName "avs-ri"
 $vHubId = $vHub.Id
 
 New-AzFirewall -Name "vwanfw" -ResourceGroupName "avs-ri" -Location westeurope -SkuTier "Premium" -SkuName "AZFW_Hub" -VirtualHubId $vHubId   -PublicIpAddress @($pip1, $pip2, $pip3, $pip4, $pip5, $pip6, $pip7, $pip8, $pip9, $pip10, $pip11, $pip12, $pip13, $pip14, $pip15, $pip16, $pip17, $pip18, $pip19, $pip20, $pip21, $pip22, $pip23, $pip24, $pip25, $pip26, $pip27, $pip28, $pip29, $pip30, $pip31, $pip32, $pip33, $pip34, $pip35, $pip36, $pip37, $pip38, $pip39, $pip40, $pip41, $pip42, $pip43, $pip44, $pip45, $pip46, $pip47, $pip48, $pip49, $pip50, $pip51, $pip52, $pip53, $pip54, $pip55, $pip56, $pip57, $pip58, $pip59, $pip60, $pip61, $pip62, $pip63, $pip64, $pip65, $pip66, $pip67, $pip68, $pip69, $pip70, $pip71, $pip72, $pip73, $pip74, $pip75, $pip76, $pip77, $pip78, $pip79, $pip80, $pip81, $pip82, $pip83, $pip84, $pip85, $pip86, $pip87, $pip88, $pip89, $pip90, $pip91, $pip92, $pip93, $pip94, $pip95, $pip96, $pip97, $pip98, $pip99, $pip100, $pip101, $pip102, $pip103, $pip104, $pip105, $pip106, $pip107, $pip108, $pip109, $pip110, $pip111)
+```
 
 > This took 10 minutes to complete deployment
   
