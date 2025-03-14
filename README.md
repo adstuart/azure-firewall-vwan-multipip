@@ -264,6 +264,7 @@ New-AzFirewall -Name "vwanfw" -ResourceGroupName "avs-ri" -Location westeurope -
 ```
 
 > This took 10 minutes to complete deployment
-  
+
+![image](/fw.PNG)
  
 
