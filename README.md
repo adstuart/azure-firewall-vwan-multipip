@@ -2,6 +2,7 @@
 Raw testing logs from using customer-managed PiPs at scale on AZFW in VWAN Hub
 
 # Create prefixes (16 IP per /28 prefix)
+'''
 az network public-ip prefix create --length 28 --location westeurope --name prefix1 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix2 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix3 --resource-group avs-ri
@@ -9,6 +10,7 @@ az network public-ip prefix create --length 28 --location westeurope --name pref
 az network public-ip prefix create --length 28 --location westeurope --name prefix5 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix6 --resource-group avs-ri
 az network public-ip prefix create --length 28 --location westeurope --name prefix7 --resource-group avs-ri
+'''
 
 # Create Public IP from prefixes (111 Public IP total)
 
